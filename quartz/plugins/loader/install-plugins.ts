@@ -1,10 +1,21 @@
 #!/usr/bin/env node
+import fs from "fs"
+import path from "path"
+import YAML from "yaml"
 import { installPlugins, parsePluginSource } from "./gitLoader.js"
-import config from "../../../quartz.js"
+import type { QuartzPluginsJson } from "./types.js"
 
 async function main() {
-  const quartzConfig: any = config
-  const externalPlugins = quartzConfig.externalPlugins || []
+  const configPath = path.join(process.cwd(), "quartz.config.yaml")
+  if (!fs.existsSync(configPath)) {
+    console.error(`Plugin config not found: ${configPath}`)
+    process.exit(1)
+  }
+
+  const config = YAML.parse(fs.readFileSync(configPath, "utf-8")) as QuartzPluginsJson
+  const externalPlugins = config.plugins
+    .filter((plugin) => plugin.enabled)
+    .map((plugin) => plugin.source)
 
   if (externalPlugins.length === 0) {
     console.log("No external plugins to install.")
@@ -13,7 +24,7 @@ async function main() {
 
   console.log(`Installing ${externalPlugins.length} plugin(s) from Git...`)
 
-  const specs = externalPlugins.map((source: string) => parsePluginSource(source))
+  const specs = externalPlugins.map((source) => parsePluginSource(source))
   const installed = await installPlugins(specs, { verbose: true })
 
   if (installed.size === externalPlugins.length) {

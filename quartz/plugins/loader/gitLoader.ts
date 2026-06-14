@@ -956,7 +956,7 @@ export async function regeneratePluginIndex(options: { verbose?: boolean } = {})
   // Type re-exports
   for (const [pluginName, { types }] of pluginExports) {
     if (types.length > 0) {
-      lines.push(`export type { ${types.join(", ")} } from "./${pluginName}"`)
+      lines.push(`export type { ${types.join(", ")} } from "./${pluginName}/dist/index.js"`)
     }
   }
 
@@ -965,7 +965,7 @@ export async function regeneratePluginIndex(options: { verbose?: boolean } = {})
     if (passthrough.length === 0) continue
     const unique = passthrough.filter((n) => (nameCount.get(n) ?? 0) === 1)
     if (unique.length > 0) {
-      lines.push(`export { ${unique.join(", ")} } from "./${pluginName}"`)
+      lines.push(`export { ${unique.join(", ")} } from "./${pluginName}/dist/index.js"`)
     }
   }
   lines.push("")

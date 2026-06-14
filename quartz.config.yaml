@@ -111,6 +111,14 @@ plugins:
     order: 92
   - source: github:quartz-community/fonts
     enabled: true
+    options:
+      useThemeFonts: false
+      fontOrigin: local
+      title: Noto Sans JP
+      body: Noto Sans JP
+      header: Noto Sans JP
+      interface: Noto Sans JP
+      code: IBM Plex Mono
   - source: github:quartz-community/remove-draft
     enabled: true
   - source: github:quartz-community/explicit-publish
@@ -244,11 +252,6 @@ plugins:
       showTags: false
       hideTagPages: true
       hideFolderPages: true
-    layout:
-      position: left
-      priority: 40
-      condition: index-only
-      display: desktop-only
   - source: github:quartz-community/spacer
     enabled: true
     options: {}
