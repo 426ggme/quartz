@@ -1,3 +1,231 @@
 @use "./variables.scss" as *;
 
-// put your custom CSS here!
+:root {
+  --site-rule: 1px solid var(--lightgray);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", sans-serif;
+  line-height: 1.75;
+}
+
+.page {
+  max-width: 1320px;
+}
+
+.page > #quartz-body {
+  column-gap: 2rem;
+
+  .center {
+    max-width: 760px;
+  }
+
+  .sidebar {
+    gap: 1rem;
+  }
+
+  .sidebar.left {
+    border-right: var(--site-rule);
+  }
+
+  .sidebar.right {
+    border-left: var(--site-rule);
+  }
+}
+
+article {
+  font-size: 1.03rem;
+
+  > p,
+  > ul,
+  > ol,
+  > blockquote {
+    max-width: 68ch;
+  }
+
+  hr {
+    border: 0;
+    border-top: var(--site-rule);
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: inherit;
+  letter-spacing: -0.015em;
+}
+
+h2 {
+  padding-bottom: 0.25rem;
+  border-bottom: var(--site-rule);
+}
+
+a {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+
+  &.internal {
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+  }
+}
+
+.article-title {
+  margin-bottom: 0.25rem;
+}
+
+.content-meta,
+.tags {
+  font-size: 0.82rem;
+  opacity: 0.72;
+}
+
+.content-meta {
+  margin-bottom: 1.75rem;
+}
+
+.breadcrumbs {
+  font-size: 0.82rem;
+}
+
+.recent-notes {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: var(--site-rule);
+
+  > h3 {
+    font-size: 1.15rem;
+  }
+
+  > ul.recent-ul > li {
+    margin: 0;
+    padding: 0.6rem 0;
+    border-bottom: var(--site-rule);
+
+    .section {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.75rem;
+      align-items: baseline;
+    }
+
+    .section > .desc h3 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .section > .meta {
+      margin: 0;
+      font-size: 0.78rem;
+      white-space: nowrap;
+    }
+  }
+}
+
+.backlinks,
+.toc {
+  font-size: 0.9rem;
+
+  > h3 {
+    padding-bottom: 0.35rem;
+    border-bottom: var(--site-rule);
+  }
+}
+
+.bases-page {
+  gap: 0.75rem;
+}
+
+.bases-view-tabs {
+  display: none;
+}
+
+.bases-list-item {
+  padding: 0.55rem 0;
+  border-bottom: var(--site-rule);
+}
+
+.bases-list-property {
+  gap: 0.65rem;
+}
+
+.list-bullet {
+  color: var(--gray);
+}
+
+footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: var(--site-rule);
+  font-size: 0.78rem;
+  opacity: 0.72;
+}
+
+.search > .search-button {
+  border-radius: 0;
+}
+
+.search > .search-container > .search-space > *:not(.ghost-text):not(.tag-suggestions) {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+@media all and ($tablet) {
+  .page > #quartz-body {
+    .center {
+      max-width: 760px;
+    }
+
+    .sidebar.right {
+      border-left: 0;
+      border-top: var(--site-rule);
+      padding-top: 1rem;
+    }
+  }
+}
+
+@media all and ($mobile) {
+  .page > #quartz-body {
+    padding: 0 1.1rem;
+
+    .sidebar.left {
+      justify-content: space-between;
+      border-right: 0;
+      border-bottom: var(--site-rule);
+      padding: 1rem 0 0.75rem;
+    }
+
+    .sidebar.right {
+      display: block;
+      border-left: 0;
+      border-top: var(--site-rule);
+      padding-top: 1rem;
+
+      > * {
+        max-height: none;
+      }
+    }
+  }
+
+  .page-title {
+    font-size: 1.2rem;
+  }
+
+  article {
+    font-size: 1rem;
+  }
+
+  .recent-notes > ul.recent-ul > li .section {
+    display: block;
+  }
+}

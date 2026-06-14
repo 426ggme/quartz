@@ -1,12 +1,12 @@
 # yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
 configuration:
-  pageTitle: Quartz 5
+  pageTitle: ggme.net
   pageTitleSuffix: ""
   enableSPA: true
   enablePopovers: true
   analytics:
     provider: plausible
-  locale: en-US
+  locale: ja-JP
   baseUrl: ggme.net
   ignorePatterns:
     - private
@@ -21,24 +21,24 @@ configuration:
       code: IBM Plex Mono
     colors:
       lightMode:
-        light: "#faf8f8"
-        lightgray: "#e5e5e5"
-        gray: "#b8b8b8"
-        darkgray: "#4e4e4e"
-        dark: "#2b2b2b"
-        secondary: "#284b63"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
+        light: "#fbfbf8"
+        lightgray: "#deded8"
+        gray: "#8c8c84"
+        darkgray: "#3f3f3b"
+        dark: "#1f1f1c"
+        secondary: "#245a7a"
+        tertiary: "#713f60"
+        highlight: rgba(36, 90, 122, 0.1)
         textHighlight: "#fff23688"
       darkMode:
-        light: "#161618"
-        lightgray: "#393639"
-        gray: "#646464"
-        darkgray: "#d4d4d4"
-        dark: "#ebebec"
-        secondary: "#7b97aa"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
+        light: "#191917"
+        lightgray: "#3b3b36"
+        gray: "#97978e"
+        darkgray: "#d5d5cd"
+        dark: "#f0f0e8"
+        secondary: "#84bad6"
+        tertiary: "#d09abc"
+        highlight: rgba(132, 186, 214, 0.12)
         textHighlight: "#b3aa0288"
 plugins:
   - source: github:quartz-community/created-modified-date
@@ -82,7 +82,8 @@ plugins:
     order: 50
     layout:
       position: right
-      priority: 30
+      priority: 10
+      condition: has-toc
   - source: github:quartz-community/crawl-links
     enabled: true
     options:
@@ -153,12 +154,12 @@ plugins:
   - source: github:quartz-community/tag-page
     enabled: true
   - source: github:quartz-community/explorer
-    enabled: true
+    enabled: false
     layout:
       position: left
       priority: 50
   - source: github:quartz-community/graph
-    enabled: true
+    enabled: false
     layout:
       position: right
       priority: 10
@@ -172,24 +173,30 @@ plugins:
         grow: true
   - source: github:quartz-community/backlinks
     enabled: true
+    options:
+      hideWhenEmpty: true
     layout:
       position: right
-      priority: 50
+      priority: 20
   - source: github:quartz-community/article-title
-    enabled: true
+    enabled: false
     layout:
       position: beforeBody
       priority: 10
   - source: github:quartz-community/content-meta
     enabled: true
+    options:
+      showReadingTime: false
+      showComma: false
     layout:
       position: beforeBody
       priority: 20
   - source: github:quartz-community/tag-list
-    enabled: false
+    enabled: true
     layout:
       position: beforeBody
       priority: 30
+      condition: has-tags
   - source: github:quartz-community/page-title
     enabled: true
     layout:
@@ -224,11 +231,20 @@ plugins:
   - source: github:quartz-community/footer
     enabled: true
     options:
-      links:
-        GitHub: https://github.com/jackyzha0/quartz
-        Discord Community: https://discord.gg/cRFFHYye7t
+      links: {}
   - source: github:quartz-community/recent-notes
-    enabled: false
+    enabled: true
+    options:
+      title: 最近更新したノート
+      limit: 5
+      linkToMore: all-pages
+      showTags: false
+      hideTagPages: true
+      hideFolderPages: true
+    layout:
+      position: afterBody
+      priority: 10
+      condition: index-only
   - source: github:quartz-community/spacer
     enabled: true
     options: {}
@@ -250,7 +266,7 @@ plugins:
         - tags
         - aliases
       excludedProperties: []
-      hidePropertiesView: false
+      hidePropertiesView: true
       delimiters: ---
       language: yaml
     order: 5
@@ -296,4 +312,6 @@ layout:
       positions:
         right: []
     canvas: {}
-    bases: {}
+    bases:
+      positions:
+        right: []
