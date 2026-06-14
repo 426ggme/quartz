@@ -6,7 +6,7 @@ configuration:
   enablePopovers: true
   analytics:
     provider: plausible
-  locale: ja-JP
+  locale: en-US
   baseUrl: ggme.net
   ignorePatterns:
     - private
@@ -16,8 +16,8 @@ configuration:
     fontOrigin: googleFonts
     cdnCaching: true
     typography:
-      header: Schibsted Grotesk
-      body: Source Sans Pro
+      header: Noto Sans JP
+      body: Noto Sans JP
       code: IBM Plex Mono
     colors:
       lightMode:
@@ -26,9 +26,9 @@ configuration:
         gray: "#8c8c84"
         darkgray: "#3f3f3b"
         dark: "#1f1f1c"
-        secondary: "#245a7a"
-        tertiary: "#713f60"
-        highlight: rgba(36, 90, 122, 0.1)
+        secondary: "#356f70"
+        tertiary: "#285859"
+        highlight: rgba(53, 111, 112, 0.08)
         textHighlight: "#fff23688"
       darkMode:
         light: "#191917"
@@ -36,9 +36,9 @@ configuration:
         gray: "#97978e"
         darkgray: "#d5d5cd"
         dark: "#f0f0e8"
-        secondary: "#84bad6"
-        tertiary: "#d09abc"
-        highlight: rgba(132, 186, 214, 0.12)
+        secondary: "#67aaa7"
+        tertiary: "#83bfbc"
+        highlight: rgba(103, 170, 167, 0.1)
         textHighlight: "#b3aa0288"
 plugins:
   - source: github:quartz-community/created-modified-date
@@ -81,9 +81,9 @@ plugins:
     enabled: true
     order: 50
     layout:
-      position: right
-      priority: 10
-      condition: has-toc
+      position: left
+      priority: 50
+      condition: not-index
   - source: github:quartz-community/crawl-links
     enabled: true
     options:
@@ -159,10 +159,11 @@ plugins:
       position: left
       priority: 50
   - source: github:quartz-community/graph
-    enabled: false
+    enabled: true
     layout:
       position: right
       priority: 10
+      condition: not-index
   - source: github:quartz-community/search
     enabled: true
     layout:
@@ -178,6 +179,7 @@ plugins:
     layout:
       position: right
       priority: 20
+      condition: not-index
   - source: github:quartz-community/article-title
     enabled: false
     layout:
@@ -191,6 +193,7 @@ plugins:
     layout:
       position: beforeBody
       priority: 20
+      condition: not-index
   - source: github:quartz-community/tag-list
     enabled: true
     layout:
@@ -209,7 +212,7 @@ plugins:
       priority: 30
       group: toolbar
   - source: github:quartz-community/reader-mode
-    enabled: true
+    enabled: false
     layout:
       position: left
       priority: 35
@@ -242,8 +245,8 @@ plugins:
       hideTagPages: true
       hideFolderPages: true
     layout:
-      position: afterBody
-      priority: 10
+      position: left
+      priority: 40
       condition: index-only
   - source: github:quartz-community/spacer
     enabled: true
@@ -278,7 +281,7 @@ plugins:
       name: quartz-themes
       repo: github:saberzero1/quartz-themes
       subdir: plugin
-    enabled: true
+    enabled: false
     options:
       theme: default
   - source: github:quartz-community/obsidian-plugin-excalidraw
