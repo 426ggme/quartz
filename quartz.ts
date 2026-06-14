@@ -7,9 +7,14 @@ import ConditionalRender from "./quartz/components/ConditionalRender"
 import DesktopOnly from "./quartz/components/DesktopOnly"
 import MobileOnly from "./quartz/components/MobileOnly"
 import ResponsiveToc from "./quartz/components/ResponsiveToc"
+import { socialImage } from "./quartz/components/SocialImage"
 
 const isIndex = (props: { fileData: QuartzPluginData }) => props.fileData.slug === "index"
 registerCondition("index-only", isIndex)
+componentRegistry.setOptionOverrides("og-image", {
+  imageStructure: socialImage,
+  defaultDescription: "",
+})
 
 const recentNotesOptions = {
   title: "最近更新したノート",

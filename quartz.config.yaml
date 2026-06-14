@@ -242,7 +242,9 @@ plugins:
   - source: github:quartz-community/footer
     enabled: true
     options:
-      links: {}
+      links:
+        GitHub: https://github.com/426ggme/
+        Bluesky: https://bsky.app/profile/ggme.net
   - source: github:quartz-community/recent-notes
     enabled: true
     options:

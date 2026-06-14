@@ -1,5 +1,5 @@
 ---
-title: ggme.net
+title: Home
 created: 2026-06-13 03:12:55
 ---
 
