@@ -248,6 +248,7 @@ plugins:
       position: left
       priority: 40
       condition: index-only
+      display: desktop-only
   - source: github:quartz-community/spacer
     enabled: true
     options: {}
