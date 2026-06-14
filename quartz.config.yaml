@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
 configuration:
-  pageTitle: Quartz 5
+  pageTitle: ggme.net
   pageTitleSuffix: ""
   enableSPA: true
   enablePopovers: true
@@ -16,29 +16,29 @@ configuration:
     fontOrigin: googleFonts
     cdnCaching: true
     typography:
-      header: Schibsted Grotesk
-      body: Source Sans Pro
+      header: Noto Sans JP
+      body: Noto Sans JP
       code: IBM Plex Mono
     colors:
       lightMode:
-        light: "#faf8f8"
-        lightgray: "#e5e5e5"
-        gray: "#b8b8b8"
-        darkgray: "#4e4e4e"
-        dark: "#2b2b2b"
-        secondary: "#284b63"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
+        light: "#fbfbf8"
+        lightgray: "#deded8"
+        gray: "#8c8c84"
+        darkgray: "#3f3f3b"
+        dark: "#1f1f1c"
+        secondary: "#356f70"
+        tertiary: "#285859"
+        highlight: rgba(53, 111, 112, 0.08)
         textHighlight: "#fff23688"
       darkMode:
-        light: "#161618"
-        lightgray: "#393639"
-        gray: "#646464"
-        darkgray: "#d4d4d4"
-        dark: "#ebebec"
-        secondary: "#7b97aa"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
+        light: "#191917"
+        lightgray: "#3b3b36"
+        gray: "#97978e"
+        darkgray: "#d5d5cd"
+        dark: "#f0f0e8"
+        secondary: "#67aaa7"
+        tertiary: "#83bfbc"
+        highlight: rgba(103, 170, 167, 0.1)
         textHighlight: "#b3aa0288"
 plugins:
   - source: github:quartz-community/created-modified-date
@@ -81,8 +81,9 @@ plugins:
     enabled: true
     order: 50
     layout:
-      position: right
-      priority: 30
+      position: left
+      priority: 50
+      condition: not-index
   - source: github:quartz-community/crawl-links
     enabled: true
     options:
@@ -153,7 +154,7 @@ plugins:
   - source: github:quartz-community/tag-page
     enabled: true
   - source: github:quartz-community/explorer
-    enabled: true
+    enabled: false
     layout:
       position: left
       priority: 50
@@ -162,6 +163,7 @@ plugins:
     layout:
       position: right
       priority: 10
+      condition: not-index
   - source: github:quartz-community/search
     enabled: true
     layout:
@@ -172,24 +174,32 @@ plugins:
         grow: true
   - source: github:quartz-community/backlinks
     enabled: true
+    options:
+      hideWhenEmpty: true
     layout:
       position: right
-      priority: 50
+      priority: 20
+      condition: not-index
   - source: github:quartz-community/article-title
-    enabled: true
+    enabled: false
     layout:
       position: beforeBody
       priority: 10
   - source: github:quartz-community/content-meta
     enabled: true
+    options:
+      showReadingTime: false
+      showComma: false
     layout:
       position: beforeBody
       priority: 20
+      condition: not-index
   - source: github:quartz-community/tag-list
-    enabled: false
+    enabled: true
     layout:
       position: beforeBody
       priority: 30
+      condition: has-tags
   - source: github:quartz-community/page-title
     enabled: true
     layout:
@@ -202,7 +212,7 @@ plugins:
       priority: 30
       group: toolbar
   - source: github:quartz-community/reader-mode
-    enabled: true
+    enabled: false
     layout:
       position: left
       priority: 35
@@ -224,11 +234,21 @@ plugins:
   - source: github:quartz-community/footer
     enabled: true
     options:
-      links:
-        GitHub: https://github.com/jackyzha0/quartz
-        Discord Community: https://discord.gg/cRFFHYye7t
+      links: {}
   - source: github:quartz-community/recent-notes
-    enabled: false
+    enabled: true
+    options:
+      title: 最近更新したノート
+      limit: 5
+      linkToMore: all-pages
+      showTags: false
+      hideTagPages: true
+      hideFolderPages: true
+    layout:
+      position: left
+      priority: 40
+      condition: index-only
+      display: desktop-only
   - source: github:quartz-community/spacer
     enabled: true
     options: {}
@@ -250,7 +270,7 @@ plugins:
         - tags
         - aliases
       excludedProperties: []
-      hidePropertiesView: false
+      hidePropertiesView: true
       delimiters: ---
       language: yaml
     order: 5
@@ -262,7 +282,7 @@ plugins:
       name: quartz-themes
       repo: github:saberzero1/quartz-themes
       subdir: plugin
-    enabled: true
+    enabled: false
     options:
       theme: default
   - source: github:quartz-community/obsidian-plugin-excalidraw
@@ -296,4 +316,6 @@ layout:
       positions:
         right: []
     canvas: {}
-    bases: {}
+    bases:
+      positions:
+        right: []
