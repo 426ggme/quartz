@@ -1,9 +1,11 @@
 ---
 title: Home
-created: 2026-06-13 03:12:55
+created: 2026-06-15 00:54:42
+modified: 2026-06-15 00:54:42
+description: Index of ggme.net
+tags: []
+aliases: []
 ---
 
 ![[profileeye-pixel.png]]
-このサイトはデジタルガーデンの発想に基づいて設計されたggme個人サイトである。Quartzによって実現されている。[[all-pages|すべてのページ]]を見てもよいが、できれば一覧の一覧のように全体を把握できるようになればよい。
-
-[[link-test|そして、これはリンクのテストである。]]
+このサイトは[[デジタルガーデン|デジタルガーデン]]の発想に基づいて設計された、[[about|たなか]]の個人サイトである。[Quartz](https://quartz.jzhao.xyz/)によって実現されている。
