@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
 configuration:
   pageTitle: ggme.net
-  pageTitleSuffix: ""
+  pageTitleSuffix: " | ggme.net"
   enableSPA: true
   enablePopovers: true
   analytics:
