@@ -3,9 +3,7 @@ title: ggme.net
 created: 2026-06-13 03:12:55
 ---
 
-![[profileeye.png]]
-This page is index of ggme.net
+![[profileeye-pixel.png]]
+このサイトはデジタルガーデンの発想に基づいて設計されたggme個人サイトである。Quartzによって実現されている。[[all-pages|すべてのページ]]を見てもよいが、できれば一覧の一覧のように全体を把握できるようになればよい。
 
-You can see [[全ページ|All pages]]
-
-[[link-test|This link is test of id link]]
+[[link-test|そして、これはリンクのテストである。]]
