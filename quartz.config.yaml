@@ -88,6 +88,8 @@ plugins:
     enabled: true
     options:
       markdownLinkResolution: shortest
+      openLinksInNewTab: true
+      externalLinkIcon: false
     order: 60
   - source: github:quartz-community/description
     enabled: true

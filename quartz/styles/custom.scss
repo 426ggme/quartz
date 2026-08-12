@@ -111,6 +111,10 @@ a {
   }
 }
 
+article a.external.alias:not(:has(> img))::after {
+  content: " (" attr(href) ")";
+}
+
 a.internal.tag-link,
 .search .result-card,
 .search .result-card:hover,
