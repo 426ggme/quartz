@@ -61,6 +61,27 @@ function addAlias(frontmatter, alias) {
   frontmatter.aliases = aliases
 }
 
+function removeSelfAliases(frontmatter, outputTarget) {
+  const current = frontmatter.aliases ?? frontmatter.alias
+  if (!current) return
+
+  const aliases = Array.isArray(current) ? current.map(String) : [String(current)]
+  const normalizedOutput = toPosix(outputTarget).toLowerCase()
+  const filtered = aliases.filter((alias) => {
+    const normalizedAlias = toPosix(alias)
+      .replace(/^\/+|\/+$/g, "")
+      .replace(/\.md$/i, "")
+      .split("/")
+      .map(slugifySegment)
+      .join("/")
+      .toLowerCase()
+    return normalizedAlias !== normalizedOutput
+  })
+
+  delete frontmatter.alias
+  frontmatter.aliases = filtered
+}
+
 async function collectFiles(root, relativeDirectory = "") {
   const directory = path.join(root, relativeDirectory)
   const entries = await fs.readdir(directory, { withFileTypes: true })
@@ -123,10 +144,11 @@ async function main() {
       }
 
       outputRelativePath = path.join(sourceDirectory, `${titleSlug}.md`)
+      const outputTarget = toPosix(outputRelativePath.slice(0, -extension.length))
+      removeSelfAliases(parsed.frontmatter, outputTarget)
       addAlias(parsed.frontmatter, sourceStem)
 
       const sourceTarget = toPosix(relativePath.slice(0, -extension.length))
-      const outputTarget = toPosix(outputRelativePath.slice(0, -extension.length))
       linkTargets.set(sourceTarget, outputTarget)
       linkTargets.set(sourceStem, outputTarget)
     }
