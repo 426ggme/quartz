@@ -42,6 +42,7 @@ jobs:
           oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tags: tag:github-actions
+          ping: 192.168.11.200
 
       - name: Set up SSH
         run: |
@@ -49,11 +50,12 @@ jobs:
           chmod 700 ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan web-ggme.tail5982c9.ts.net >> ~/.ssh/known_hosts
+          ssh-keyscan -H 192.168.11.200 >> ~/.ssh/known_hosts
 
       - name: Deploy via rsync
         run: |
           rsync -av --delete \
+            --chmod=D755,F644 \
             -e "ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes" \
             public/ \
-            webdeploy@web-ggme.tail5982c9.ts.net:/var/www/ggmenet/
+            webdeploy@192.168.11.200:/srv/ggme/
